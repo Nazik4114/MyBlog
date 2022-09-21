@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+    .paginator{
+        padding-left: 35%;
+    }
+    .information{
+        font-weight: 900;
+    }
+.myCol{
+    height: 600px;
+}
+.myform{
+    margin-left:15% ;
+    margin-right:15% ;
+}
+.mbtn{
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+}
+.mdiv{
+    position:relative;
+}
+.mimg{
+    height: 320px;
+}
+.mimgOnePost{
+    height: 300px;
+
+    object-fit: cover
+}
+.mheaderL{
+    margin-left: 15%;
+}
+.mheaderR{
+    margin-right: 20%;
+}
+.data{
+    margin-left: 45%;
+}
+.tt{
+    position:absolute;
+}
