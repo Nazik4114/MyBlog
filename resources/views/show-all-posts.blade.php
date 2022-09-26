@@ -39,6 +39,6 @@
 </div>
 <br>
 <div class="paginator">
-{{$posts->links()}}
+{{$posts->withQueryString()->links()}}
 </div>
       @endsection

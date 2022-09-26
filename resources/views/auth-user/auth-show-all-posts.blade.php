@@ -5,11 +5,11 @@
         </h2>
     </x-slot>
     <div class="container">
-  <?php
-  if(strlen($search)!=0){
-    echo "<h2>Searching by: {$search}</h2><br>";
-  }
-  ?>
+  
+  @if(strlen($search)!=0)
+    <h2>Searching by: {{$search}}</h2><br>
+  
+  @endif
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -47,6 +47,6 @@
 </div>
 <br>
 <div class="paginator pb-3">
-{{$posts->links()}}
+{{$posts->withQueryString()->links()}}
 </div>
 </x-app-layout>

@@ -52,7 +52,8 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-      <form  class="col-12 col-lg-auto mt-2.5 mb-lg-0 " role="search" action="/authsearch">
+      <form method="get" class="col-12 col-lg-auto mt-2.5 mb-lg-0 " role="search" action="/authsearch">
+      @csrf
         <input type="search" class="form-control" placeholder="Search...(by name book)" name="search" aria-label="Search">
       </form>
             <!-- Hamburger -->

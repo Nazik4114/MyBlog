@@ -14,7 +14,8 @@
                 </div>&nbsp;
         <span class="fs-4 mr-9">MyBlog</span>
       </a> 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 mheaderR" role="search" action="/search">
+      <form method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 mheaderR" action="{{route('search')}}">
+      @csrf
         <input type="search" class="form-control" placeholder="Search...(by name book)" name="search" aria-label="Search">
       </form>
     </div>

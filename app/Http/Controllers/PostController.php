@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Coment;
-use App\Http\Requests\PostRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -40,11 +39,11 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $request->validated();
-        $post=Post::create([
-            'user_id'=>Auth::user()->id,
-            'title'=>$request->title,
-            'image_url'=>$request->image_url,
-            'body'=>$request->body,
+        $post = Post::create([
+            'user_id' => Auth::user()->id,
+            'title' => $request->title,
+            'image_url' => $request->image_url,
+            'body' => $request->body,
         ]);
         return redirect()->back()->with('status', 'Post added!');
     }
@@ -58,10 +57,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('post.show', [
-            'post'=>$post,
-            'author'=>$post->user,
-            'coments'=>$post->coments,
-            'user'=>Auth::user(),
+            'post' => $post,
+            'author' => $post->user,
+            'coments' => $post->coments,
+            'user' => Auth::user(),
         ]);
     }
 
@@ -73,7 +72,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit',['post'=>$post]);
+        return view('post.edit', ['post' => $post]);
     }
 
     /**
@@ -86,7 +85,7 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $request->validated();
-        
+
         $post->update($request->all());
         return redirect()->back()->with('status', 'Post udateted!');
     }
@@ -99,26 +98,26 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $npost=Post::find($post->id);
+        $npost = Post::find($post->id);
         $npost->delete();
         return redirect()->route('profile')
             ->with('status', 'Post deleted successfully');
     }
     public function warning(Post $post)
     {
-        $npost=Post::find($post->id);
-        return view('post.warning',['post'=>$npost]);
+        $npost = Post::find($post->id);
+        return view('post.warning', ['post' => $npost]);
     }
     public function admin_destroy(Post $post)
     {
-        $npost=Post::find($post->id);
+        $npost = Post::find($post->id);
         $npost->delete();
         return redirect()->route('dashboard')
             ->with('status', 'Post deleted successfully');
     }
     public function admin_warning(Post $post)
     {
-        $npost=Post::find($post->id);
-        return view('post.admin-warning',['post'=>$npost]);
+        $npost = Post::find($post->id);
+        return view('post.admin-warning', ['post' => $npost]);
     }
 }

@@ -76,15 +76,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'role_id' => 'required|integer|exists:roles,id',
-        ]);
+        $request->validated();
 
         $user->update([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
         $role = Role::find($request->role_id);
 

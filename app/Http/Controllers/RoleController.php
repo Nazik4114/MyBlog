@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Http\Requests\Role\PostRequest;
 
 class RoleController extends Controller
 {
@@ -42,12 +43,9 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleStoreRequest $request)
     {
-        $request->validate([
-            'name' => ['required','max:255'],
-            'permissions.*' => ['required','integer','exists:permissions,id'],
-        ]);
+        $request->validated();
 
         $newRole = Role::create([
             'name' => $request->name
@@ -93,13 +91,9 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(RoleUpdateRequest $request, Role $role)
     {
-        $request->validate([
-            'name' => ['required', 'max:255'],
-            'permissions' => ['required'],
-            'permissions.*' => ['required', 'integer', 'exists:permissions,id'],
-        ]);
+        $request->validated();
 
         $role = Role::where('name', '!=', 'super-user')->findOrFail($role->id);
         $role->update([
