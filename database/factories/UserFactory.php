@@ -18,10 +18,10 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'user_name'=>$this->faker->userName,
-            'street'=>$this->faker->streetName,
-            'city'=>$this->faker->city,
-            'phone'=>$this->faker->phoneNumber,
+            'user_name' => $this->faker->userName,
+            'street' => $this->faker->streetName,
+            'city' => $this->faker->city,
+            'phone' => $this->faker->phoneNumber,
             'password' => $this->faker->password, // password
             'remember_token' => Str::random(10),
         ];

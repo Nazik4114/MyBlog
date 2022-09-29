@@ -32,14 +32,13 @@ class ComentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \App\Models\Post $post
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(ComentRequest $request, Post $post)
     {
-        $request->validate([
-            'coment' => ['required', 'max:255'],
-        ]);
+        $request->validated();
         $coment = Coment::create([
             'post_id' => $post->id,
             'name' => Auth::user()->name,
@@ -63,6 +62,7 @@ class ComentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Models\Post $post
      * @param  \App\Models\Coment  $coment
      * @return \Illuminate\Http\Response
      */
@@ -80,13 +80,12 @@ class ComentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Coment  $coment
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Coment $coment, Post $post)
+    public function update(ComentRequest $request, Coment $coment, Post $post)
     {
-        $request->validate([
-            'coment' => ['required', 'max:255'],
-        ]);
+        $request->validated();
         $coment->update([
             'body' => $request->coment,
         ]);

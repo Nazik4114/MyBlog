@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Http\Requests\Role\PostRequest;
 
 class RoleController extends Controller
 {
- /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,7 +18,7 @@ class RoleController extends Controller
         $roles = Role::orderBy('name')->where('name', '!=', 'super-admin')->get();
 
         return view('role.index', [
-            'roles'=>$roles,
+            'roles' => $roles,
         ]);
     }
 
@@ -32,8 +31,8 @@ class RoleController extends Controller
     {
         $permissions = Permission::orderBy('name')->get();
 
-        return view('role.create',[
-            'permissions'=>$permissions,
+        return view('role.create', [
+            'permissions' => $permissions,
         ]);
     }
 
@@ -48,7 +47,7 @@ class RoleController extends Controller
         $request->validated();
 
         $newRole = Role::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $newRole->syncPermissions($permissions);
@@ -75,12 +74,12 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $role = Role::where('name', '!=', 'super-user')->findOrFail($role->id);
+        $role = Role::notAdmin()->findOrFail($role->id);
         $permissions = Permission::orderBy('name')->get();
 
         return view('role.edit', [
-            'permissions'=>$permissions,
-            'role'=>$role,
+            'permissions' => $permissions,
+            'role' => $role,
         ]);
     }
 
@@ -95,9 +94,9 @@ class RoleController extends Controller
     {
         $request->validated();
 
-        $role = Role::where('name', '!=', 'super-user')->findOrFail($role->id);
+        $role = Role::notAdmin()->findOrFail($role->id);
         $role->update([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
         $permissions = Permission::whereIn('id', $request->permissions)->get();
         $role->syncPermissions($permissions);
@@ -113,7 +112,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $drole=Role::find($role->id);
+        $drole = Role::find($role->id);
         $drole->delete();
         return redirect()->back()->with('status', 'Role deleted!');
     }

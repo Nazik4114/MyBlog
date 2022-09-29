@@ -10,11 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthUserController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('auth-user.auth-show-all-posts', ['posts' => Post::orderBy('created_at', 'desc')->paginate(15), 'search' => ""]);
+        return view('auth-user.auth-show-all-posts', ['posts' => Post::latter()->paginate(15), 'search' => ""]);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User $id
+     * @param  \App\Models\Post $post_id
+     * @return void
+     */
     public function aboutAuthor(User $id, Post $post_id)
     {
 
@@ -29,14 +41,14 @@ class AuthUserController extends Controller
             'search' => 'required|max:255',
         ]);
         return view('auth-user.auth-show-all-posts', [
-            'posts' => Post::where('title', 'LIKE', '%' . $req->search . '%')->orderBy('created_at', 'desc')->paginate(15),
+            'posts' => Post::where('title', 'LIKE', '%' . $req->search . '%')->latter()->paginate(15),
             'search' => $req->search,
         ]);
     }
     public function profile()
     {
         return view('auth-user.profile', [
-            'posts' => Post::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(9),
+            'posts' => Post::where('user_id', '=', Auth::user()->id)->latter()->paginate(9),
             'author' => Auth::user(),
         ]);
     }

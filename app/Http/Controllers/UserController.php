@@ -8,16 +8,16 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $users = User::orderBy('created_at','desc')->get();
-  return view('users.index', compact([
-            'users'
+        $users = User::latter()->get();
+        return view('users.index', compact([
+            'users',
         ]));
     }
 
@@ -98,12 +98,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $duser=User::find($user->id);
+        $duser = User::find($user->id);
         $duser->delete();
         return redirect()->route('users.index')
-        ->with('status', 'User deleted successfully');
+            ->with('status', 'User deleted successfully');
     }
-        /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User  $user
@@ -111,6 +111,6 @@ class UserController extends Controller
      */
     public function warning(User $user)
     {
-        return view('users.warning',['user'=>$user]);
+        return view('users.warning', ['user' => $user]);
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -27,12 +27,12 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['email','required',Rule::unique('users')->ignore(Auth::user()->id)],
-            'user_name'=> ['required', 'string', 'max:255'],
-            'city'=> ['required', 'string', 'max:255'],
-            'street'=> ['required', 'string', 'max:255'],
-            'phone'=> ['required', 'string', 'max:20', 'min:10'],
-           
+            'email' => ['email', 'required', Rule::unique('users')->ignore(Auth::user()->id)],
+            'user_name' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'street' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:20', 'min:10'],
+
         ];
     }
 }
