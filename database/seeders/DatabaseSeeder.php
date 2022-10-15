@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         Post::factory(1250)->create();
         Coment::factory(6250)->create();
 
-        CreateSuperAdminSeeder::run();
+        (new CreateSuperAdminSeeder)->run();
 
-        PermissionsSeeder::run();
+        (new PermissionsSeeder)->run();
 
-        RoleUserSeeder::run();
+        (new RoleUserSeeder)->run();
     }
 }

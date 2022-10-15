@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ComentRequest;
 use App\Models\Coment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class ComentController extends Controller
      *
      * @param  \App\Models\Post $post
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ComentRequest $request, Post $post)
     {
@@ -64,7 +65,7 @@ class ComentController extends Controller
      *
      * @param  \App\Models\Post $post
      * @param  \App\Models\Coment  $coment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application
      */
     public function edit(Coment $coment, Post $post)
     {
@@ -81,7 +82,7 @@ class ComentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Coment  $coment
      * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ComentRequest $request, Coment $coment, Post $post)
     {
@@ -96,7 +97,7 @@ class ComentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Coment  $coment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Coment $coment)
     {
