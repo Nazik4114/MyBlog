@@ -4,7 +4,7 @@
             {{ __('MyBlog') }}
         </h2>
     </x-slot>
-     
+
     <div class="container my-5">
     @if (session('status'))
                     <div class="alert alert-success">
@@ -22,7 +22,7 @@
                 @endif
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-     
+
         <h2 class="display-4 fw-bold lh-1">{{$author->name}}</h2><br>
         <p class="lead fw-bold">User-name: <span class="lead">{{$author->user_name}}</span></p>
         <h3 class="information" >Details information:</h3><br>
@@ -42,10 +42,10 @@
         <a href="{{route('posts.create')}}" class="btn btn-success">New Post</a>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-          <img class="rounded-lg-3" alt="" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20({{rand(0,33)}}).webp" width="325">
+          <img class="rounded-lg-3" alt="" src="{{asset($images[rand(0,19)]['path'])}}" width="425">
       </div>
     </div>
-  </div>  
+  </div>
   <div class="conteiner myform">
   <h1>Your Posts:</h1><br><br>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -69,7 +69,7 @@
             </div>
 
           </div>
-        </div>           
+        </div>
       @endforeach
       </div>
 

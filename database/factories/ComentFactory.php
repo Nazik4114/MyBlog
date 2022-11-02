@@ -14,7 +14,7 @@ class ComentFactory extends Factory
     public function definition()
     {
         return [
-            'post_id' => $this->faker->numberBetween(1, 1250),
+            'post_id' => $this->faker->numberBetween(1, 100),
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
             'body' => $this->faker->paragraphs(rand(1, 8), true),

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Jobs\ProcessDownloadImages;
 use App\Models\Coment;
 use App\Models\Post;
 use App\Models\User;
@@ -16,9 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(25)->create();
-        Post::factory(1250)->create();
-        Coment::factory(6250)->create();
+        dispatch(new ProcessDownloadImages("https://pixabay.com/api/?key=30901572-740c7ca13b59d9ea5b312c9a3&category=travel&image_type=photo", "NXLhsbyvDNRmGDJL1mjt5zVlzTt1VnFL"));
+        User::factory(10)->create();
+        Post::factory(100)->create();
+        Coment::factory(1000)->create();
 
         (new CreateSuperAdminSeeder)->run();
 

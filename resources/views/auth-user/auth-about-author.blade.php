@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-          <img class="rounded-lg-3" alt="" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20({{rand(0,33)}}).webp" width="325">
+          <img class="rounded-lg-3" alt="" src="{{asset($images[rand(0,19)]['path'])}}" width="425">
       </div>
     </div>
   </div>

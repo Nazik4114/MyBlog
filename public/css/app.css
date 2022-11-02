@@ -1291,13 +1291,12 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
-
-    .paginator{
-        padding-left: 35%;
-    }
-    .information{
-        font-weight: 900;
-    }
+.paginator{
+    padding-left: 35%;
+}
+.information{
+    font-weight: 900;
+}
 .myCol{
     height: 600px;
 }
@@ -1590,3 +1589,4 @@ select {
     padding-right: 2rem;
   }
 }
+

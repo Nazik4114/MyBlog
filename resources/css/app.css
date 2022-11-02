@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
-    .paginator{
-        padding-left: 35%;
-    }
-    .information{
-        font-weight: 900;
-    }
+.paginator{
+    padding-left: 35%;
+}
+.information{
+    font-weight: 900;
+}
 .myCol{
     height: 600px;
 }

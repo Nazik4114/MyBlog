@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AuthUserController extends Controller
@@ -13,7 +15,7 @@ class AuthUserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,8 +25,8 @@ class AuthUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User $id
-     * @param  \App\Models\Post $post_id
+     * @param User $id
+     * @param Post $post_id
      * @return void
      */
     public function aboutAuthor(User $id, Post $post_id)
@@ -33,8 +35,11 @@ class AuthUserController extends Controller
         return view('auth-user.auth-about-author', [
             'post_id' => $post_id->id,
             'author' => $id,
+            'images' => Image::all(),
+
         ]);
     }
+
     public function search(Request $req)
     {
         $req->validate([
@@ -45,11 +50,13 @@ class AuthUserController extends Controller
             'search' => $req->search,
         ]);
     }
+
     public function profile()
     {
         return view('auth-user.profile', [
             'posts' => Post::where('user_id', '=', Auth::user()->id)->latter()->paginate(9),
             'author' => Auth::user(),
+            'images' => Image::all(),
         ]);
     }
 
@@ -59,6 +66,7 @@ class AuthUserController extends Controller
             'user' => Auth::user(),
         ]);
     }
+
     public function postUpdateProfile(UserRequest $request)
     {
         $request->validated();
@@ -70,5 +78,6 @@ class AuthUserController extends Controller
         $users->street = $request->street;
         $users->phone = $request->phone;
         $users->save();
-        return redirect()->back()->with('status', 'User information update!');}
+        return redirect()->back()->with('status', 'User information update!');
+    }
 }

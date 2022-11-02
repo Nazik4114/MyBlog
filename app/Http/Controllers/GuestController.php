@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
 
@@ -20,6 +21,8 @@ class GuestController extends Controller
             'post' => $id,
             'author' => $id->user,
             'coments' => $id->coments,
+            'images' => Image::all(),
+
         ]);
     }
 
@@ -29,6 +32,7 @@ class GuestController extends Controller
         return view('about-author', [
             'post_id' => $post_id->id,
             'author' => $id,
+            'images' => Image::all(),
         ]);
     }
 

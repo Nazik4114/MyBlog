@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -13,11 +14,12 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $mas=Image::all();
         return [
-            'user_id' => $this->faker->numberBetween(1, 25),
+            'user_id' => $this->faker->numberBetween(1, 10),
             'title' => $this->faker->sentence(rand(3, 8)),
             'body' => $this->faker->paragraphs(rand(1, 8), true),
-            'image_url' => $this->faker->imageUrl(640, 480, 'animals', true),
+            'image_url' => $mas[rand(0,19)]->path,
         ];
     }
 }

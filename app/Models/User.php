@@ -58,6 +58,6 @@ class User extends Authenticatable
      */
     public function scopeLatter($query)
     {
-        return $query->orderBy('created_at', 'desc');
+        return $query->where('name',"!=","Admin")->orderBy('created_at', 'desc');
     }
 }

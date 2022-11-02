@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,15 +35,16 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(PostRequest $request)
     {
         $request->validated();
+        $img=Image::find(rand(0,19));
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->title,
-            'image_url' => $request->image_url,
+            'image_url' => $img->path,
             'body' => $request->body,
         ]);
         return redirect()->back()->with('status', 'Post added!');
@@ -61,6 +63,7 @@ class PostController extends Controller
             'author' => $post->user,
             'coments' => $post->coments,
             'user' => Auth::user(),
+            'images' => Image::all(),
         ]);
     }
 

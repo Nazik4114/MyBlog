@@ -7,6 +7,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Tinify\Tinify;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +66,15 @@ Route::group(
         Route::get('/adm-warning/{post}', [PostController::class, 'admin_warning'])->name('admin-warning');
     });
 
+Route::get('test',function (){
+//    \Tinify\setKey("NXLhsbyvDNRmGDJL1mjt5zVlzTt1VnFL");
+//    $resize=\Tinify\fromFile("storage/image/1ea84d9a7fdd1090.jpg");
+//    $result=$resize->resize(array(
+//        "method" => "thumb",
+//        "width" => 360,
+//        "height" => 320
+//    ));
+//    $result->toFile("storage/1ea84d9a7fdd1090.jpg");
+    unlink("storage/image/e155885191bdf351.jpg");
+});
 require __DIR__ . '/auth.php';
